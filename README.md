@@ -1,6 +1,8 @@
 # Frontend-test-Stopwatch-CN
 Frontend test: Stopwatch For coding Ninja project
 
+[See it in action](https://kus0023.github.io/Frontend-test-Stopwatch-CN/)
+
 ### We have a Clock class which contains below three main functions
 - start
 - stop
