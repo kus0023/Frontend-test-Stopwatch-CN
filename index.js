@@ -5,6 +5,9 @@
         time = 0; //Time will be in seconds.
         timeInterval = null;
 
+        //Extra stuff
+        registeredTime = [];
+
         constructor() { 
             console.log("Clock is created.");
         }
@@ -36,6 +39,8 @@
             if(this.timeInterval != null){
                 clearInterval(this.timeInterval);
                 this.timeInterval = null;
+
+                this.registeredTime.push(this.getFormattedTime());
             }else{
                 throw new Error("Clock is already stopped.")
             }
@@ -48,6 +53,7 @@
                 this.timeInterval = null;
             }
             this.time = 0;
+            this.registeredTime = [];
         }
 
         //This will give time in format MM:SS (M - Minutes, S-seconds)
@@ -84,6 +90,20 @@
 
         let time = clock.getFormattedTime();
         timeDisplayElem.innerText = time;
+
+        //Extra stuff
+
+        const registeredTimeElem = document.getElementById('registered-times');
+        registeredTimeElem.innerHTML = ''; //clearing the list to append fresh childs
+        
+        clock.registeredTime.forEach(times=>{
+            //Update the list elements
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(times));
+            li.classList.add('list-group-item');
+            
+            registeredTimeElem.appendChild(li); // each element added to list
+        });
     }
     updateUI();
 
@@ -93,12 +113,14 @@
     const stopButton = document.getElementById('clock-stop-btn');
     const startButton = document.getElementById('clock-start-btn');
 
+    //each time a button is press we need to add update UI to see the updated list. Extra feature.
     resetButton.addEventListener('click', (e)=>{
         clock.reset();
         updateUI();
     })
     stopButton.addEventListener('click', (e)=>{
         clock.stop();
+        updateUI();
     })
     startButton.addEventListener('click', (e)=>{
         clock.start(updateUI);
