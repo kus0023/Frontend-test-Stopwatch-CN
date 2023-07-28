@@ -24,6 +24,13 @@ This function will clear the interval by using clearInterval function. But it wi
 ### 3. Function Reset:
 This function will clear the interval and also it will set time to '0'. So that if we start the clock again then it will start from 00:00.
 
+### 4. Funtion getFormattedTime
+This funtion will provide formatted time.
+
+# Innovation
+Added functionality to show the stopped timings. It will automatically cleared out when you hit reset button.
+I think stop watches should have this feature as well. :smile:
+
 
 References:
 https://developer.mozilla.org/en-US/docs/Web/API/setInterval
