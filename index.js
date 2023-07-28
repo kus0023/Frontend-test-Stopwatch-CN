@@ -10,6 +10,11 @@
         }
 
         start(work){
+
+            if(this.timeInterval != null){
+                throw new Error("Clock is already running.")
+            }
+
             let self = this;
             this.timeInterval = setInterval(function(){
                 self.time++;
@@ -31,6 +36,8 @@
             if(this.timeInterval != null){
                 clearInterval(this.timeInterval);
                 this.timeInterval = null;
+            }else{
+                throw new Error("Clock is already stopped.")
             }
             
         }
@@ -42,6 +49,28 @@
             }
             this.time = 0;
         }
+
+        //This will give time in format MM:SS (M - Minutes, S-seconds)
+        getFormattedTime(){
+            let time = this.time;
+
+            let minute = Math.floor(time / 60);
+            let second = time % 60;
+
+            minute = minute.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            });
+
+            second = second.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            });
+
+            time = minute + ":" + second;
+
+            return time;
+        }
     }
     
 
@@ -50,13 +79,13 @@
     //update the UI funtion which will be called in clock.start() funciton.
     // see startButton on clock event function.
     let updateUI = function (){
-        console.log(clock.time);
+        
         const timeDisplayElem = document.getElementById('time-display');
 
-        let minutes = Math.floor(clock.time / 60);
-        let seconds = clock.time % 60;
-        timeDisplayElem.innerText = minutes+":"+seconds;
+        let time = clock.getFormattedTime();
+        timeDisplayElem.innerText = time;
     }
+    updateUI();
 
 
     //Registering the button clicks
