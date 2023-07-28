@@ -2,7 +2,7 @@
 
     class Clock{
 
-        time = 0;
+        time = 0; //Time will be in seconds.
         timeInterval = null;
 
         constructor() { 
@@ -47,7 +47,8 @@
 
     let clock = new Clock();
 
-    //update the UI
+    //update the UI funtion which will be called in clock.start() funciton.
+    // see startButton on clock event function.
     let updateUI = function (){
         console.log(clock.time);
         const timeDisplayElem = document.getElementById('time-display');
@@ -56,8 +57,6 @@
         let seconds = clock.time % 60;
         timeDisplayElem.innerText = minutes+":"+seconds;
     }
-
-    clock.start(updateUI);
 
 
     //Registering the button clicks
