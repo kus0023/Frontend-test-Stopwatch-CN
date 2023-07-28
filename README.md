@@ -9,8 +9,10 @@ We have a Clock class which contains below three main functions
 Which was the basic requirement of the project.
 
 Clock will have two attributes which are:
-time: contains the time in seconds
-timeInterval: contains the integer value returned from setInterval func. This will be used to stop the clock.
+
+ - time: contains the time in seconds
+ - timeInterval: contains the integer value returned from setInterval func. This will be used to stop the clock.
+
 
 Function Start:
 It will take a optional function parameter. This function will be called inside start function. Basically whatever work you want to perform every second. In this project we will update the time on the screen.
